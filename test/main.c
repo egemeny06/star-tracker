@@ -70,10 +70,16 @@ int main(void)
            cam.focal_length, cam.pixel_size, cam.width, cam.height);
     printf("FOV: %.2f x %.2f degrees\n\n", cam.fov_x, cam.fov_y);
 
-    /* --- 2. Load Hipparcos Sample Catalog --- */
-    StarCatalog catalog;
-    load_sample_catalog(&catalog);
-    printf("Catalog loaded: %u stars\n\n", catalog.count);
+    /* --- 2. Load Hipparcos Catalog --- */
+    static StarCatalog catalog;  /* static: too large for stack (~255KB) */
+    int loaded = catalog_load_csv(&catalog, "data/hipparcos_catalog.csv");
+    if (loaded > 0) {
+        printf("Hipparcos catalog loaded: %d stars from CSV\n\n", loaded);
+    } else {
+        printf("CSV not found, using sample catalog...\n");
+        load_sample_catalog(&catalog);
+        printf("Sample catalog loaded: %u stars\n\n", catalog.count);
+    }
 
     /* --- 3. Centroid extraction demo --- */
     CentroidList frame;

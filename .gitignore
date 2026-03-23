@@ -3,3 +3,4 @@ build/
 *.exe
 *.d
 *.out
+data/hygdata_v41.csv
