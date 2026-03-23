@@ -10,7 +10,7 @@ INC_DIR = include
 TEST_DIR = test
 BUILD_DIR = build
 
-SRCS = $(SRC_DIR)/centroid.c $(SRC_DIR)/catalog.c $(SRC_DIR)/star_tracker.c $(SRC_DIR)/attitude.c
+SRCS = $(SRC_DIR)/centroid.c $(SRC_DIR)/catalog.c $(SRC_DIR)/star_tracker.c $(SRC_DIR)/attitude.c $(SRC_DIR)/projection.c $(SRC_DIR)/star_id.c $(SRC_DIR)/simulation.c
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(BUILD_DIR)/%.o,$(SRCS))
 
 TARGET = $(BUILD_DIR)/star_tracker
